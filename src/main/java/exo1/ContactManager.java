@@ -8,10 +8,12 @@ public class ContactManager implements ContactService {
 
     private final EmailService emailService;
     private final SMSService smsService;
+    private final MMSService mmsService;
 
-    public ContactManager(EmailService emailService, SMSService smsService) {
+    public ContactManager(EmailService emailService, SMSService smsService, MMSService mmsService) {
         this.emailService = emailService;
         this.smsService = smsService;
+        this.mmsService = mmsService;
     }
 
     public void ajouteContact(Contact contact) {
@@ -28,6 +30,10 @@ public class ContactManager implements ContactService {
 
     public void envoiSMS(Contact contact, String message) {
         smsService.envoyerMessage(contact, message);
+    }
+
+    public void envoiMMS(Contact contact, String image) {
+        mmsService.envoyerMessage(contact, image);
     }
 
     public void afficheContacts() {
